@@ -1,0 +1,15 @@
+#!/bin/bash
+if [ $# -eq 0 ]; then
+    FILE='cpsc490-prospectus.md';
+else
+    FILE="$1";
+fi
+
+OUTPUT="$(basename "$FILE" .md)".pdf 
+
+pandoc -o "$OUTPUT" "$FILE" &&
+    open "$OUTPUT"
+
+if [ $# -eq 0 ]; then
+    cp cpsc490-prospectus.pdf ~/Dropbox/Public/;
+fi
