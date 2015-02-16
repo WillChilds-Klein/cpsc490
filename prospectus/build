@@ -1,9 +1,10 @@
 #!/bin/bash
+
 if [ $# -eq 0 ]; then
     FILE='cpsc490-prospectus.md';
 elif [ "$1" == "clean" ]; then
     rm 'cpsc490-prospectus.pdf' &&
-        return 0;
+        exit 0;
 else
     FILE="$1";
 fi

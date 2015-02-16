@@ -7,13 +7,13 @@ header-includes:
     - \fancyhead[CO,CE]{CPSC 490}
 ---
 
-Introduction
-============
+# Introduction
+
 Parallel data processing methods have allowed people of all professions to analyze data at an unprecedented scale, yielding key insights in myriad industries and academic disciplines. Contemporaneously (and not entirely independently), data privacy has become an important and immediate issue in our society. Organizations in both the public and private sectors constantly collect or access data on their users or constituents, often without explicit consent by the individual. As computing continues to shift into "the cloud" from users' local systems, user data is relinquished to, and becomes centralized in, the small number of prevalent cloud service providers. In distributed parallel data processing, where clusters of multiple physical or virtual machines execute jobs in parallel, this introduces a potential for privacy and confidentiality compromises of users' data, as well as results of their computations. Even assuming an entirely privacy-respecting benign cluster provider, the contemporary model of centralized cluster control provides an attack focus for malicious hackers. Though there are many different architectures for parallel and distributed processing, we will focus exclusively on the MapReduce paradigm in this project.
 
 
-Problem Statement
-=================
+# Problem Statement
+
 So, how can we protect the privacy of users' data and computations while still affording the user all (or at least most) of the major features of modern distributed data processing architectures? We need a system that:
 
   1. is decentralized (peer-to-peer) in architecture with granular data access control, to prevent a malicious peer from being able to see too great a portion of the user's data.[^1]
@@ -21,40 +21,30 @@ So, how can we protect the privacy of users' data and computations while still a
   3. maintains compatibility with existing MapReduce implementations without requiring the user to re-write large portions of their code base.
 
 
-TorMR
-=====
+# TorMR
+
 We propose a system called TorMR which implements the Map Reduce paradigm, but manages clusters over the Tor network. Users who wish to accrue a cluster register a request with TorMR's bulletin-board, which is protected behind a Tor Hidden Service (**THS**). Other users who wish to volunteer their nodes' compute power register them as available workers with the bulletin board THS, and when enough nodes are available, a cluster is formed. Worker nodes on the cluster are unaware of each others' locations (IP addresses), as is the node requesting the compute job, as all communication is through Tor's hidden service protocol.
 
 
-Privacy Model
-=============
-Location & Identity
--------------------
+# Privacy Model
+## Location & Identity
 
-Data Encryption
----------------
+## Data Encryption
 
-Only A Small Picture
---------------------
+## Only A Small Picture
 
 
-Components
-==========
-TorMR/Bulletin-Board THS
-------------------------
+# Components
+## TorMR/Bulletin-Board THS
 
-Job THS
--------
+## Job THS
 
-Discovery & Cluster Management
-------------------------------
+## Discovery & Cluster Management
 
-Distributed Data Layer/File System
-----------------------------------
+## Distributed Data Layer/File System
 
 
-Protocol
-========
+# Protocol
 **NOTE:** I mislabelled a few of the figures. "J1TMS" _should_ be "J1THS". my apologies, I will correct this soon.  
 
   1. ![post_and_available](diagrams/post_and_available.png) Alice requests a cluster ($n=2$ in this instance) on the TorMR Bulletin-Board THS. Bob and Carl register with bulletin-board as "available".
@@ -68,59 +58,43 @@ Protocol
   4. ![discover_db](diagrams/discover_db.png) J1THS, who will function as the "master" node in the impending MR job, assigns tasks and pushes containerized job deployments to all worker nodes (in this example, just Bob and Carl) in the cluster. Once all containers are up and running their respective tasks (mappers or reducers, as HTTP servers), J1THS runs the job via HTTP. J1THS reads/writes from J1DB throughout the job in order to manage the cluster.[^4] As the diagram is somewhat misleading, it should be noted that this connection between J1THS and J1DB needn't be through Tor, as they're both controlled by Alice. The two could be running on the same virtual server off somewhere in "the cloud".
 
 
-Tools, Dependencies, & Technologies
-===================================
-Tor
----
+# Tools, Dependencies, & Technologies
+## Tor
 
-golang
-------
+## golang
 
-Pachyderm MapReduce
--------------------
+## Pachyderm MapReduce
 
-git
----
+## git
 
-Docker
-------
+## Docker
 
-CoreOS & etcd
--------------
+## CoreOS & etcd
 
 
-Development & Deployment Methodologies
-======================================
-Source Testing
---------------
+# Development & Deployment Methodologies
+## Source Testing
 
-Vagrant
--------
+## Vagrant
 
-VirtualBox
-----------
+## VirtualBox
 
-Compute Cluster
----------------
+## Compute Cluster
 
 
-Relaxations & Substitutions in the Interest of Feasibility
-==========================================================
+# Relaxations & Substitutions in the Interest of Feasibility
 
 
-Deliverables
-============
+# Deliverables
   1. code for simulations/proof of concept
   2. code documentation
   3. formal document containing description of project, implementation details & design decisions, and analysis of experimental results.
 
 
-Vulnerabilities & Fault Points
-==============================
+# Vulnerabilities & Fault Points
 
 
-Future Work
-===========
+# Future Work
   - dynamic cluster management
   - fully anonymous (self-hosted) data layer
   - payment system (probably via BTC)
@@ -133,12 +107,11 @@ Future Work
     + as part of job definition, requester must specify storage bucket address.
 
 
-Timeline & Milestones
-=====================
-
-|  **Deadline** |             **Goal**          |
-|:-------------:|-------------------------------|
-|    2/22/15    | get sample MR job running on virtual cluster |
+# Timeline & Milestones
+|  **Deadline** |                          **Goal**                           |
+|:-------------:|-------------------------------------------------------------|
+|    2/22/15    | get sample MR job running on virtual cluster blah di blah d |
+|               | continuation blah di blah blah |
 |    3/01/15    | |
 |    3/08/15    | |
 |    3/15/15    | |
