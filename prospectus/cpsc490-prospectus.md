@@ -1,5 +1,5 @@
 ---
-title: CPSC 490 Prospectus: TorReduce
+title: "CPSC 490: TorMR"
 author: Will Childs-Klein
 header-includes:
     - \usepackage{fancyhdr}
@@ -21,6 +21,62 @@ So, how can we protect the privacy of users' computations while still affording 
 
 TorMR
 =====
+We propose a system called TorMR which implements the Map Reduce paradigm, but manages clusters over the Tor protocol. Users who wish to accrue a cluster register a request with TorMR's bulletin-board, which is protected behind a Tor hidden service (THS). Other users who wish to volunteer their nodes' compute power register them as available workers with the bulletin board THS, and when enough nodes are available, a cluster is formed. Worker nodes on the cluster are unaware of each others' locations (IP addresses), as is the node requesting the compute job, as all communication is through Tor's hidden service protocol. We will elaborate on this protocol soon, but we will first enumerate the system's components.
+
+Privacy Model
+=============
+
+
+Components
+==========
+Bulletin-Board THS
+------------------
+
+Job THS
+-------
+
+Discovery & Cluster Management
+------------------------------
+
+Distributed Data Layer/File System
+----------------------------------
+
+
+Protocol
+========
+
+
+Tools, Dependencies, & Technologies
+===================================
+Tor
+---
+
+Pachyderm MapReduce
+-------------------
+
+git
+---
+
+Docker
+------
+
+CoreOS & etcd
+-------------
+
+
+Development & Deployment Methodologies
+======================================
+Source Testing
+--------------
+
+Vagrant
+-------
+
+VirtualBox
+----------
+
+Compute Cluster
+---------------
 
 
 Deliverables
@@ -28,6 +84,37 @@ Deliverables
   1. code for simulations/proof of concept
   2. code documentation
   3. formal document containing description of project, implementation details & design decisions, and analysis of experimental results.
+
+
+Future Work
+===========
+  - dynamic cluster management
+  - fully anonymous (self-hosted) data layer
+  - payment system (probably via BTC)
+  - pipeline implementation
+    + this should be implemented as a dumb pipe for compute jobs
+    + replace Bulletin-Board THS with job queue
+    + instead of matching available workers with individual jobs, keep them as pool (i.e. all available workers are part of same super-cluster)
+    + users register their jobs as a git repository
+    + when job is up in queue, job is `git push`'d to the cluster where it is executed. data is read/results are written from/to specified storage buckets
+    + as part of job definition, requester must specify storage bucket address.
+
+
+Timeline & Milestones
+=====================
+
+|  Deadline |             Goal              |
+|:---------:|-------------------------------|
+|  2/22/15  | get MR sample MR job running on virtual cluster |
+|  3/01/15  | |
+|  3/08/15  | |
+|  3/15/15  | |
+|  3/22/15  | |
+|  3/29/15  | |
+|  4/05/15  | |
+|  4/12/15  | |
+|  4/29/15  | All done!                     
+
 
 [^1]:  this may be susceptible to sybil attacks
 [^2]:  or at least pseudonymity
