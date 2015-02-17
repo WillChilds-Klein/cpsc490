@@ -96,7 +96,6 @@ We propose a system called TorMR which implements the Map Reduce paradigm, but m
 
 # Future Work
   - dynamic cluster management
-  - fully anonymous (self-hosted) data layer
   - payment system (probably via BTC)
   - pipeline implementation
     + this should be implemented as a dumb pipe for compute jobs
@@ -105,6 +104,11 @@ We propose a system called TorMR which implements the Map Reduce paradigm, but m
     + users register their jobs as a git repository
     + when job is up in queue, job is `git push`'d to the cluster where it is executed. data is read/results are written from/to specified storage buckets
     + as part of job definition, requester must specify storage bucket address.
+  - improvements to the data layer/FS
+    + perhaps something blockchain-basedlike [BlockStore](https://github.com/openname/blockstore)
+    + should be fully anonymous
+    + granular auth permissions
+    + native encryption on-disk
 
 
 # Timeline & Milestones
