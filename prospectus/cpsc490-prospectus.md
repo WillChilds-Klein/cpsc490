@@ -114,8 +114,8 @@ We propose a system called TorMR which implements the Map Reduce paradigm, but m
 # Timeline & Milestones
 |  **Deadline** |                          **Goal**                           |
 |:-------------:|-------------------------------------------------------------|
-|    2/22/15    | get sample MR job running on virtual cluster blah di blah d |
-|               | continuation blah di blah blah |
+|    2/22/15    | get sample MR job running on virtual cluster blah di blah   |
+|               | second line continuation blah di blah blah                  |
 |    3/01/15    | |
 |    3/08/15    | |
 |    3/15/15    | |
